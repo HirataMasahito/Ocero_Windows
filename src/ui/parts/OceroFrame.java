@@ -27,22 +27,36 @@ import common.Common.Stone;
 public class OceroFrame extends JFrame implements ActionListener {
 
 	/**
-	 *
+	 * デフォルトバージョン番号
 	 */
 	private static final long serialVersionUID = 1L;
+	/** 画面タイトル */
 	private static final String TITLE = "Othello";
+	/** メニュータイトル GAME */
 	private static final String GAME_MENU = "GAME";
+	/** メニュータイトル リセット */
 	private static final String GAME_MENU_RESET = "RESET";
+	/** メニュータイトル 終了 */
 	private static final String GAME_MENU_EXIT = "EXIT";
+	/** メニュータイトル 設定 */
 	private static final String SETTING_MENU = "SETTING";
+	/** メニュータイトル 黒石AI */
 	private static final String SETTING_MENU_BLACK = "BLACK";
+	/** メニュータイトル 白いしAI */
 	private static final String SETTING_MENU_WHITE = "WHITE";
 
+	/** フレームに表示するパネルクラス */
 	private OceroPanel panel;
 
-	JMenu aiListBlackMenu = new JMenu(SETTING_MENU_BLACK);
-	JMenu aiListWhiteMenu = new JMenu(SETTING_MENU_WHITE);
+	/** 黒AIメニュー */
+	private JMenu aiListBlackMenu = new JMenu(SETTING_MENU_BLACK);
+	/** 白AIメニュー */
+	private JMenu aiListWhiteMenu = new JMenu(SETTING_MENU_WHITE);
 
+	/**
+	 * コンストラクタ
+	 * タイトル、メニューを設定しゲームを初期化する
+	 */
 	public OceroFrame() {
 		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +112,7 @@ public class OceroFrame extends JFrame implements ActionListener {
 
 	/**
 	 * 【SETTING】メニュー内のAI選択メニューの生成
-	 *
+	 * TODO 新しくAIを追加したら、ここに追加してください。
 	 * @param parentMenu
 	 *            親となるメニュー
 	 * @return AIリストの追加されたメニュー
@@ -109,6 +123,8 @@ public class OceroFrame extends JFrame implements ActionListener {
 		JRadioButtonMenuItem menuitem3 = new JRadioButtonMenuItem("MaxStoneR");
 		JRadioButtonMenuItem menuitem4 = new JRadioButtonMenuItem("OneWay");
 		JRadioButtonMenuItem menuitem5 = new JRadioButtonMenuItem("SteadyR");
+		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
+		//JRadioButtonMenuItem menuitemX = new JRadioButtonMenuItem("【メニューに表示するAI名】");
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(menuitem1);
@@ -117,6 +133,10 @@ public class OceroFrame extends JFrame implements ActionListener {
 		group.add(menuitem4);
 		group.add(menuitem5);
 
+		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
+		//group.add(menuitemS);
+
+
 		menuitem1.setSelected(true);
 
 		parentMenu.add(menuitem1);
@@ -124,6 +144,8 @@ public class OceroFrame extends JFrame implements ActionListener {
 		parentMenu.add(menuitem3);
 		parentMenu.add(menuitem4);
 		parentMenu.add(menuitem5);
+		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
+		//parentMenu.add(menuitemX);
 
 		return parentMenu;
 
@@ -141,12 +163,25 @@ public class OceroFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * ゲームのリセット
+	 */
 	private void gameReset() {
+		//選択されているAIで、ゲームを初期化する
 		AiBase player1 = getSelectedAi(aiListBlackMenu,Stone.BLACK);
 		AiBase player2 = getSelectedAi(aiListWhiteMenu,Stone.WHITE);
 		panel.Reset(player1,player2);
 	}
 
+	/**
+	 * メニューで選択されているAIを取得する
+	 *
+	 * TODO 新しくAIを追加したら、ここに追加してください。
+	 *
+	 * @param menuList メニューリスト（黒メニュー、白メニュー）
+	 * @param color 石の色
+	 * @return 選択されているAI
+	 */
 	private AiBase getSelectedAi(JMenu menuList,Stone color) {
 		AiBase retAi = null;
 		JRadioButtonMenuItem selectedMenu = null;
@@ -171,6 +206,12 @@ public class OceroFrame extends JFrame implements ActionListener {
 		}else if(selectedMenu.getText().equals("SteadyR")){
 			retAi = new SteadyR(color);
 		}
+
+		/* TODO 新たにAIを作成したら、このブロックをコピーして追記してください
+		else if(selectedMenu.getText().equals("【メニューに追加したAI名】")){
+			retAi = new 【作成したAI】(color);
+		}
+		 */
 
 		return retAi;
 

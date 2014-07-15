@@ -13,20 +13,20 @@ import common.Pos;
 /**
  * ゲーム進行を管理する
  * ※環境に応じて、コントローラを改造する必要がある。
- * これはCUI版
+ * これはWINDOWS版
  *
  */
 public class GameController extends Observable {
 
 	/** プレイヤーリスト */
 	private ArrayList<AiBase> PlayerList;
-	/**  */
+	/** 盤情報 */
 	private Bord bord = new Bord();
-	/***/
+	/** パスフラグ */
 	private boolean passFlg = false;
-	/***/
+	/** ゲーム終了フラグ */
 	private boolean gamesetFlg = false;
-	/***/
+	/** ゲームカウンタ */
 	private int gameCnt = 0;
 
 	/**
@@ -54,31 +54,41 @@ public class GameController extends Observable {
 	 * ゲームの開始
 	 */
 	public void GameStart() {
-
 		bord.BordInit();
 		setChanged();
 		notifyObservers();
 	}
 
 	/**
-	 * 現在の手版が、人か、AIか判断します。
-	 *
-	 * @return
+	 * 現在の手版が、HUMANクラス(手動操作)か、AIか判断します。
+	 * @return HUMANクラスの場合TRUE
 	 */
 	public boolean isNowHuman() {
 		AiBase turnPlayer = PlayerList.get(gameCnt % 2);
 		return (turnPlayer instanceof Human);
 	}
 
+	/**
+	 * 現在の手版の石の色を返します
+	 * @return 石の色 黒Or白
+	 */
 	public Stone getNowColor() {
 		AiBase turnPlayer = PlayerList.get(gameCnt % 2);
 		return turnPlayer.getMyColor();
 	}
 
+	/**
+	 * ゲーム終了フラグを取得します
+	 * @return True ゲーム終了
+	 */
 	public boolean isGameSet() {
 		return gamesetFlg;
 	}
 
+	/**
+	 * 次のターン
+	 * @param clickPos クリックされた座標
+	 */
 	public void NextTurn(Pos clickPos) {
 		// 現在の手版を取得
 		AiBase turnPlayer = PlayerList.get(gameCnt % 2);
@@ -118,8 +128,8 @@ public class GameController extends Observable {
 	}
 
 	/**
-	 *
-	 * @return
+	 * 版情報を取得します
+	 * @return 盤のクローン
 	 */
 	public Bord getBord() {
 		return bord.clone();

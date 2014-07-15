@@ -22,7 +22,8 @@ import common.Common;
 import common.Pos;
 
 /**
- *
+ * 画面描画、および、イベント管理クラス
+ * 画面の描画、ゲームの進行を管理します。
  */
 public class OceroPanel extends JPanel implements MouseListener, ActionListener, Observer {
 
@@ -34,6 +35,9 @@ public class OceroPanel extends JPanel implements MouseListener, ActionListener,
 	GameController controller;
 	Timer timer;
 
+	/**
+	 * コンストラクタ ゲームコントローラの初期化を行う
+	 */
 	public OceroPanel() {
 		setPreferredSize(new Dimension(Common.BORD_WIDTH, Common.BORD_HEIGHT));
 		addMouseListener(this);
@@ -42,6 +46,12 @@ public class OceroPanel extends JPanel implements MouseListener, ActionListener,
 		timer.start();
 	}
 
+	/**
+	 * オセロのリセット処理
+	 * メニューから呼ばれる
+	 * @param player1 黒のAI
+	 * @param player2 白のAI
+	 */
 	public void Reset(AiBase player1, AiBase player2) {
 		controller = new GameController(player1, player2);
 		controller.addObserver(this);
@@ -123,6 +133,18 @@ public class OceroPanel extends JPanel implements MouseListener, ActionListener,
 		}
 	}
 
+
+	/**
+	 * タイマー処理
+	 */
+	public void actionPerformed(ActionEvent e) {
+		// 次が機械なら自動で打つ
+		if (!controller.isNowHuman()) {
+			controller.NextTurn(null);
+		}
+	}
+
+	///以下、未使用メソッド
 	public void mouseClicked(MouseEvent e) {
 	}
 
@@ -135,13 +157,4 @@ public class OceroPanel extends JPanel implements MouseListener, ActionListener,
 	public void mouseExited(MouseEvent e) {
 	}
 
-	/**
-	 * タイマー処理
-	 */
-	public void actionPerformed(ActionEvent e) {
-		// 次が機械なら自動で打つ
-		if (!controller.isNowHuman()) {
-			controller.NextTurn(null);
-		}
-	}
 }

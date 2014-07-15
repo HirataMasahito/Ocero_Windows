@@ -34,7 +34,8 @@ public abstract class AiBase {
 
 	/**
 	 * どこにおくかを取得します。
-	 *
+	 * @param bord 盤情報
+	 * @param クリックした座標(HUMANクラス以外では使わない)
 	 * @return 設置場所
 	 */
 	abstract public Pos WhereSet(Bord bord,Pos clickPos);

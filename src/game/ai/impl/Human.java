@@ -21,7 +21,7 @@ public class Human extends AiBase {
 	@Override
 	public Pos WhereSet(Bord bord,Pos clickPos) {
 
-
+		//クリックした場所が設置可能ならその座標を返す
 		while(! bord.CanSet(clickPos,getMyColor())){
 			return null;
 		}

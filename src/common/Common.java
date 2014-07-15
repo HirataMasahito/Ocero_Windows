@@ -31,8 +31,7 @@ public class Common {
 		WHITE("白"),
 		NONE("無");
 
-		// メンバ変数の定義
-		// このメンバ変数は必須です。
+		/** 石の色名 */
 		private String name;
 
 		/**
@@ -44,7 +43,10 @@ public class Common {
 			return name;
 		}
 
-		// コンストラクタの実装
+		/**
+		 *  コンストラクタの実装
+		 * @param name 石の色名
+		 */
 		private Stone(String name) {
 			this.name = name;
 		}
