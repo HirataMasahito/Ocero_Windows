@@ -148,8 +148,4 @@ public class SteadyR extends AiBase {
 
 	}
 
-	@Override
-	public String toString() {
-		return "SteadyR(遅いので注意)";
-	}
 }

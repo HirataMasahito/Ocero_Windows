@@ -21,11 +21,4 @@ public class MaxStone extends AiBase {
 		return bord.SearchMaxPos(getMyColor());
 	}
 
-
-	@Override
-	public String toString() {
-
-		return "MaxStone";
-	}
-
 }

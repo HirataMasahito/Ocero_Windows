@@ -67,10 +67,4 @@ public class MaxStoneR extends AiBase {
 		return retPos;
 	}
 
-
-	@Override
-	public String toString() {
-
-		return "MaxStoneR";
-	}
 }

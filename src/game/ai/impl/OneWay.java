@@ -36,8 +36,4 @@ public class OneWay extends AiBase {
 		return null;
 	}
 
-	@Override
-	public String toString() {
-		return "OneWay";
-	}
 }
