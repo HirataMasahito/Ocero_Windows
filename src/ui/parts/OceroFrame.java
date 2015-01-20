@@ -1,11 +1,17 @@
 package ui.parts;
 
 import game.ai.AiBase;
+import game.ai.impl.HiranoTest;
 import game.ai.impl.Human;
+import game.ai.impl.Ikeda;
+import game.ai.impl.MH_Spart;
 import game.ai.impl.MaxStone;
 import game.ai.impl.MaxStoneR;
+import game.ai.impl.NoSafety;
 import game.ai.impl.OneWay;
+import game.ai.impl.SN_Ai;
 import game.ai.impl.SteadyR;
+import game.ai.impl.Uchida1;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -123,6 +129,12 @@ public class OceroFrame extends JFrame implements ActionListener {
 		JRadioButtonMenuItem menuitem3 = new JRadioButtonMenuItem("MaxStoneR");
 		JRadioButtonMenuItem menuitem4 = new JRadioButtonMenuItem("OneWay");
 		JRadioButtonMenuItem menuitem5 = new JRadioButtonMenuItem("SteadyR");
+		JRadioButtonMenuItem menuitem6 = new JRadioButtonMenuItem("NoSafety");
+		JRadioButtonMenuItem menuitem7 = new JRadioButtonMenuItem("MH_Spart");
+		JRadioButtonMenuItem menuitem8 = new JRadioButtonMenuItem("Uchida1");
+		JRadioButtonMenuItem menuitem9 = new JRadioButtonMenuItem("SN_Ai");
+		JRadioButtonMenuItem menuitem10 = new JRadioButtonMenuItem("Ikeda");
+		JRadioButtonMenuItem menuitem11 = new JRadioButtonMenuItem("HiranoTest");
 		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
 		//JRadioButtonMenuItem menuitemX = new JRadioButtonMenuItem("【メニューに表示するAI名】");
 
@@ -132,6 +144,12 @@ public class OceroFrame extends JFrame implements ActionListener {
 		group.add(menuitem3);
 		group.add(menuitem4);
 		group.add(menuitem5);
+		group.add(menuitem6);
+		group.add(menuitem7);
+		group.add(menuitem8);
+		group.add(menuitem9);
+		group.add(menuitem10);
+		group.add(menuitem11);
 
 		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
 		//group.add(menuitemS);
@@ -144,6 +162,12 @@ public class OceroFrame extends JFrame implements ActionListener {
 		parentMenu.add(menuitem3);
 		parentMenu.add(menuitem4);
 		parentMenu.add(menuitem5);
+		parentMenu.add(menuitem6);
+		parentMenu.add(menuitem7);
+		parentMenu.add(menuitem8);
+		parentMenu.add(menuitem9);
+		parentMenu.add(menuitem10);
+		parentMenu.add(menuitem11);
 		/* TODO 新たにAIを作成したら、このコードをコピーして追記してください*/
 		//parentMenu.add(menuitemX);
 
@@ -205,6 +229,18 @@ public class OceroFrame extends JFrame implements ActionListener {
 			retAi = new OneWay(color);
 		}else if(selectedMenu.getText().equals("SteadyR")){
 			retAi = new SteadyR(color);
+		}else if(selectedMenu.getText().equals("NoSafety")){
+			retAi = new NoSafety(color);
+		}else if(selectedMenu.getText().equals("MH_Spart")){
+			retAi = new MH_Spart(color);
+		}else if(selectedMenu.getText().equals("Uchida1")){
+			retAi = new Uchida1(color);
+		}else if(selectedMenu.getText().equals("SN_Ai")){
+			retAi = new SN_Ai(color);
+		}else if(selectedMenu.getText().equals("Ikeda")){
+			retAi = new Ikeda(color);
+		}else if(selectedMenu.getText().equals("HiranoTest")){
+			retAi = new HiranoTest(color);
 		}
 
 		/* TODO 新たにAIを作成したら、このブロックをコピーして追記してください

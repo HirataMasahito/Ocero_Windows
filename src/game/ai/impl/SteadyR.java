@@ -49,30 +49,26 @@ public class SteadyR extends AiBase {
 		if (myHands.size() > 0) {
 
 			// 四隅だけは優先して置くように
-			if (HighWeightList.containsAll(myHands)) {
-				for (Pos pos : HighWeightList) {
-					if (bord.CanSet(pos, getMyColor())) {
-						retPos = pos;
-						break;
-					}
+			for (Pos pos : HighWeightList) {
+				if (bord.CanSet(pos, getMyColor())) {
+					return  pos;
 				}
-			} else {
-				// 四隅に置けないなら、堅実にして置くように
-				ArrayList<Point> valueList = new ArrayList<Point>();
-				for (Pos pos : myHands) {
-					int value = getValueByStatus(bord, pos, getMyColor(), REFLEX_CNT);
-					valueList.add(new Point(value, pos));
-					//System.out.println(pos.getX() + ":" + pos.getY() + "=" + value);
-				}
-
-				// リストを降順でソートする
-				Collections.sort(valueList, new PointComparator());
-				// ソート順の最高の値を取得
-				retPos = valueList.get(0).getPos();
-
 			}
 
-		}
+			// 四隅に置けないなら、堅実にして置くように
+			ArrayList<Point> valueList = new ArrayList<Point>();
+			for (Pos pos : myHands) {
+				int value = getValueByStatus(bord, pos, getMyColor(), REFLEX_CNT);
+				valueList.add(new Point(value, pos));
+				//System.out.println(pos.getX() + ":" + pos.getY() + "=" + value);
+			}
+
+			// リストを降順でソートする
+			Collections.sort(valueList, new PointComparator());
+			// ソート順の最高の値を取得
+			retPos = valueList.get(0).getPos();
+
+			}
 
 		return retPos;
 	}
